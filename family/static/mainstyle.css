@@ -1,0 +1,18 @@
+html
+{
+  background-color: #9999FF;
+  color: white;
+  text-align: center;
+}
+body
+{
+  width: 1000px;
+  color: white;
+}
+h1
+{
+  margin: 0;
+  padding: 20px 0;
+  font-size: 60px;
+  color: white;
+}
