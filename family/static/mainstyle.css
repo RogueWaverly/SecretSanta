@@ -1,13 +1,14 @@
 html
 {
-  background-color: #9999FF;
+  background-color: green;
   color: white;
   text-align: center;
 }
 body
 {
-  width: 1000px;
+  width: 100%;
   color: white;
+  text-align: center;
 }
 h1
 {
@@ -15,4 +16,33 @@ h1
   padding: 20px 0;
   font-size: 60px;
   color: white;
+}
+table
+{
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+table, th, td
+{
+  border: 1px solid white;
+}
+th, td
+{
+  padding: 1%;
+  vertical-align: top;
+}
+th[class='th1']
+{
+  background-color: red;
+  border: 2px solid white;
+  font-size: 24px;
+}
+th[class='th2']
+{
+  font-size: 20px;
+  font-style: italic;
 }

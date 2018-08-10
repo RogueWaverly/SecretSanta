@@ -1,0 +1,79 @@
+{% load static %}
+{% load filters %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Roeger Family Secret Santa</title>
+    <link href="{% static 'mainstyle.css' %}" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <h1>Welcome to Roeger Family Secret Santa 2018!</h1>
+    <table>
+      <tr>
+        {% if membersByPool.1.0 or membersByPool.0.0 %}
+          <th class="th1">No Pool</th>
+        {% endif %}
+        {% for pool in pools %}
+          <th class="th1">{{ pool.pool_name }}</th>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th class="th2" colspan={{ numOfCols }}>Participants</th>
+      </tr>
+      <tr>
+        {% if membersByPool.1.0 or membersByPool.0.0 %}
+          <td>
+          {% if membersByPool.1.0 %}
+            {% for member in membersByPool.1.0 %}
+              <p>{{ member.mem_name }}</p>
+            {% endfor %}
+          {% else %}
+            <p>No participating members without pool.</p>
+          {% endif %}
+          </td>
+        {% endif %}
+        {% for pool in pools %}
+          <td>
+            {% if membersByPool.1|return_item:pool.id %}
+              {% for member in membersByPool.1|return_item:pool.id %}
+                <p>{{ member.mem_name }}</p>
+              {% endfor %}
+            {% else %}
+              <p><i>None</i></p>
+            {% endif %}
+          </td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th class="th2" colspan={{ numOfCols }}>Non-Participants (Show/Hide)</th>
+      </tr>
+      <tr>
+        {% if membersByPool.1.0 or membersByPool.0.0 %}
+          <td>
+          {% if membersByPool.0.0 %}
+            {% for member in membersByPool.0.0 %}
+              <p>{{ member.mem_name }}</p>
+            {% endfor %}
+          {% else %}
+            <p>No non-participating members without pool.</p>
+          {% endif %}
+          </td>
+        {% endif %}
+        {% for pool in pools %}
+          <td>
+            {% if membersByPool.0|return_item:pool.id %}
+              {% for member in membersByPool.0|return_item:pool.id %}
+                <p>{{ member.mem_name }}</p>
+              {% endfor %}
+            {% else %}
+              <p>No non-participating members in {{ pool.pool_name }} pool</p>
+            {% endif %}
+          </td>
+        {% endfor %}
+      </tr>
+    </table>
+    <p>Add new member.</p>
+    <p>Add new pool / Edit pools.</p>
+    <p>Add new immediate family / Edit immediate family.</p>
+  </body>
+</html>

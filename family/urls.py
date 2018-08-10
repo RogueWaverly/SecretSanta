@@ -1,6 +1,7 @@
-from django.conf.urls import url
+from django.urls import path
 from family import views
 
 urlpatterns = [
-    url(r'^$', views.EditPoolsView.as_view()),
+  path('', views.OpenPools, name='Display Open Pools'),
+  path('<int:member_id>/', views.EditMember, name='Editing Member'),
 ]
